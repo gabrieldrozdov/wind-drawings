@@ -25,13 +25,23 @@ function start() {
 	let intro = document.querySelector(".intro");
 	intro.style.opacity = 0;
 	intro.style.pointerEvents = "none";
-	let navLinks = document.querySelectorAll(".nav-link");
-	for (let navLink of navLinks) {
-		navLink.style.opacity = 1;
-		navLink.style.pointerEvents = "all";
-	}
 	let main = document.querySelector("main");
 	main.style.opacity = 1;
+	setTimeout(() => {
+		let info = document.querySelector(".info");
+		info.style.opacity = 1;
+	}, 2500)
+	setTimeout(() => {
+		let drawing = document.querySelector(".drawing");
+		drawing.style.opacity = 1;
+	}, 5000)
+	setTimeout(() => {
+		let navLinks = document.querySelectorAll(".nav-link");
+		for (let navLink of navLinks) {
+			navLink.style.opacity = 1;
+			navLink.style.pointerEvents = "all";
+		}
+	}, 7500)
 	main.style.pointerEvents = "all";
 
 	// Check which element is onscreen
@@ -39,27 +49,25 @@ function start() {
 }
 
 let details = {
-	vid1: ["10.6 MPH", "5 SECONDS", "PUSSY WILLOW BRANCH"],
-	vid2: ["11 MPH", "3 SECONDS", "asdfasdf"],
-	vid3: ["10.6 MPH", "5 SECONDS", "PUSSY WILLOW BRANCH"],
-	vid4: ["11 MPH", "3 SECONDS", "asdfasdf"],
-	vid5: ["10.6 MPH", "5 SECONDS", "PUSSY WILLOW BRANCH"],
-	vid6: ["11 MPH", "3 SECONDS", "asdfasdf"],
-	vid7: ["10.6 MPH", "5 SECONDS", "PUSSY WILLOW BRANCH"],
-	vid8: ["11 MPH", "3 SECONDS", "asdfasdf"],
-	vid9: ["10.6 MPH", "5 SECONDS", "PUSSY WILLOW BRANCH"]
+	"nettle": ["Collaborator: Nettle Leaves", "Speed: 5.4–6.3 MPH", "Time: 2 seconds"],
+	"dandelions": ["Collaborator: Dandelions", "Speed: 5.1–5.8 MPH", "Time: 3 seconds"],
+	"redadler": ["Collaborator: Red Alder", "Speed: 8.2–12.5 MPH", "Time: .5 seconds"],
+	"singlebranch": ["Collaborator: A single branch", "Speed: 12.8–15.4 MPH", "Time: 1 second"],
+	"greenash": ["Collaborator: Green Ash", "Speed: 5.8 MPH", "Time: 2 seconds"],
 }
 
 let infoSpeed = document.querySelector(".info-speed");
 let infoDuration = document.querySelector(".info-duration");
 let infoDesc = document.querySelector(".info-desc");
+let drawing = document.querySelector(".drawing");
+let offset = 500;
 function checkVisible() {
 	for (let mainVideo of document.querySelectorAll(".main-video")) {
 		let rect = mainVideo.getBoundingClientRect();
 		let viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight);
-		if (!(rect.bottom < 0 || rect.top - viewHeight >= 0)) {
+		if (!(rect.bottom + offset < 0 || rect.top - viewHeight + offset >= 0)) {
 			let videoNumber = mainVideo.dataset.video;
-			console.log(videoNumber);
+			drawing.style.backgroundImage = `url("assets/drawings/${videoNumber}.png")`
 			infoSpeed.innerText = details[videoNumber][0];
 			infoDuration.innerText = details[videoNumber][1];
 			infoDesc.innerText = details[videoNumber][2];

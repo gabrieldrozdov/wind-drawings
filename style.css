@@ -48,6 +48,7 @@
 	pointer-events: none;
 	opacity: 0;
 	transition: opacity 1s;
+	z-index: 999;
 }
 .nav-link a {
 	text-align: center;
@@ -155,24 +156,43 @@ main {
 	font-size: 18px;
 	color: white;
 	text-transform: uppercase;
+	opacity: 0;
+	transition: opacity 1s;
 }
-.main-gif {
+.drawing {
 	position: fixed;
-	top: 0;
+	top: 50%;
 	left: 50%;
-	width: 50vw;
-	transform: translate(-50%, -50%);
-	transition: background-image 1s;
-	background-size: contain;
-}
-.main-slide {
-	width: 100vw;
+	width: 80vw;
 	height: 100vh;
+	transform: translate(-50%, -50%);
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	z-index: 999;
+	pointer-events: none;
+	background-image: url("assets/drawings/nettle.png");
+	opacity: 0;
+	transition: opacity 1s;
+}
+.videos {
+	width: 100vw;
 	padding: 160px;
 	display: flex;
-	align-items: center;
+	align-items: stretch;
 	justify-content: center;
+	flex-direction: column;
+	gap: 200px;
 }
-.main-video {
-	height: 100%;
+.video-full {
+	align-self: center;
+	height: calc(100vh - 320px);
+}
+.video-right {
+	align-self: end;
+	width: 45%;
+}
+.video-left {
+	align-self: start;
+	width: 65%;
 }
